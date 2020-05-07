@@ -1,24 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+
+  const [text, setText] = useState("")
+  const [timeRemaining, setTimeRemaining] = useState(5)
+  const [gameStatus, setGameStatus] = useState(false)
+  const [wordCount, setWordCount] = useState(0)
+
+  function handleChange(event){
+    const { value } = event.target
+    setText(value)
+
+  }
+
+  function countWord(text){
+    const words = text.trim().split(" ")
+    return words.filter(word=>word !== "").length
+  }
+
+  function startTimer(){
+    setGameStatus(true)
+    setTimeRemaining(5)
+    setText("")
+  }
+
+  useEffect(() => {
+    
+      if(gameStatus && timeRemaining > 0){
+
+        setTimeout(() => {
+          setTimeRemaining(time => time - 1)
+        }, 1000)
+
+      }
+      else if(timeRemaining === 0){
+        setGameStatus(false)
+        const numOfWords = countWord(text)
+        setWordCount(numOfWords)
+      }
+    }, [timeRemaining, gameStatus])
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Typing Speed Test </h1>
+
+      <textarea 
+            onChange={handleChange}
+            value={text} 
+            disabled={gameStatus ? false : true}/>
+
+      <h4>Time Remaining: {timeRemaining} </h4>
+      <button 
+            onClick={startTimer} 
+            disabled={gameStatus ? true : false}>Start</button>
+      
+      <h1>Word Count : {wordCount} </h1>
+      
     </div>
   );
 }

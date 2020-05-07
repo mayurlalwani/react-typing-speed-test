@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(5)
   const [gameStatus, setGameStatus] = useState(false)
   const [wordCount, setWordCount] = useState(0)
+  const textAreaRef = useRef(null)
 
   function handleChange(event){
     const { value } = event.target
@@ -23,6 +24,8 @@ function App() {
     setGameStatus(true)
     setTimeRemaining(5)
     setText("")
+    textAreaRef.current.disabled = false
+    textAreaRef.current.focus()
   }
 
   useEffect(() => {
@@ -48,6 +51,7 @@ function App() {
       <h1> Typing Speed Test </h1>
 
       <textarea 
+            ref={textAreaRef}
             onChange={handleChange}
             value={text} 
             disabled={gameStatus ? false : true}/>

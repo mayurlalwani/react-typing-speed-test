@@ -1,10 +1,10 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -12,9 +12,40 @@ code {
     monospace;
 }
 
+.App{
+  /* border: solid 1px; */
+  margin:20px;
+  height:100vh;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 textarea{
   width: 40%;
   height: 200px;
-  
+  border:solid 1px;
+  border-color: black;
+}
+
+button{
+  width:100px;
+  height: 40px;
+  /* background-color: blue; */
+  /* color:white; */
+  font-size: large;
+  font-weight:bold;
+  margin:20px;
+  border-radius: 20px;
+}
+
+.quoteInput{
+  /* border:solid 1px; */
+  /* align-self: center; */
+  width:750px;
+  text-align: center;
+  height:100px;
+  padding-top: 1%;
+
 }
